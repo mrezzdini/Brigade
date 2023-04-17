@@ -1,0 +1,26 @@
+server:
+  port: 8050
+  servlet:
+    context-path: /api
+
+
+spring:
+  application:
+    name: SpringBootKeycloak
+  security:
+    oauth2:
+      resource-server:
+        jwt:
+          issuer-uri:  http://localhost:8080/realms/SpringBootKeycloak/protocol/openid-connect/token
+          jwk-set-uri:  ${spring.security.oauth2.resource-server.jwt.issuer-uri}/protocol/openid-connect/certs
+
+jwt:
+  auth:
+    converter:
+      resource-id: springboot-keycloak-client
+      principal-attribute: preferred_username
+
+
+logging:
+  level:
+    org.springframework.security: DEBUG
